@@ -1,18 +1,16 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
 
 
-class Child2 extends Component {
-
-
-    render() {
-        return(
+const Child2 = ({ children }) =>
             <section>
-                <h1>Child2</h1>
-            </section>
-        )
-    }
+                {children[1] && <h1>{children[1]}</h1>}
+            </section>;
 
 
-}
 
-export default Child2;
+const mapStateToProps = ({ children }) => ({
+    children,
+});
+
+export default connect(mapStateToProps)(Child2);

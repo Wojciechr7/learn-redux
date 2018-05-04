@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
 
 
 class Child3 extends Component {
@@ -7,7 +8,7 @@ class Child3 extends Component {
     render() {
         return(
             <section>
-                <h1>Child3</h1>
+                {this.props.children && <h1>{this.props.children[2]}</h1>}
             </section>
         )
     }
@@ -15,4 +16,8 @@ class Child3 extends Component {
 
 }
 
-export default Child3;
+const mapStateToProps = ({ children }) => ({
+    children,
+});
+
+export default connect(mapStateToProps)(Child3);

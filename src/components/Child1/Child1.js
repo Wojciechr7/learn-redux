@@ -1,18 +1,33 @@
 import React, {Component} from 'react';
+import { connect } from "react-redux";
+import {changeChildren} from "../../actions";
 
 
-class Child1 extends Component {
 
-
-    render() {
-        return(
+const Child1 = ({ children, setCharacter }) =>
             <section>
-                <h1>Child1</h1>
-            </section>
-        )
+                {children[0] && <h1>{children[0]}</h1>}
+                <button onClick={() => setCharacter(children)}>change button</button>
+            </section>;
+
+
+
+
+
+const mapStateToProps = (state) => {
+    return {
+        contacts: state.contacts
     }
+};
+
+const mapDispatchToProps = dispatch => ({
+    setCharacter(children) {
+        //children.changeNames();
+        console.log('dispatching');
+        dispatch(changeChildren(['child1 changed', 'child2 changed', 'child3 changed']));
+    },
+});
 
 
-}
 
-export default Child1;
+export default connect(mapStateToProps, mapDispatchToProps)(Child1);
